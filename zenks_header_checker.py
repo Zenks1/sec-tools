@@ -35,18 +35,29 @@ def check_security_headers(url):
     ]
     response = requests.head(url)
     missing_headers = []
-
+    
     for header in check_following:
+        print('''                
+██╗  ██╗██╗    ██╗███╗   ███╗    ███████╗███████╗███╗   ██╗██╗  ██╗███████╗    ██╗       
+██║  ██║██║    ██║████╗ ████║    ╚══███╔╝██╔════╝████╗  ██║██║ ██╔╝██╔════╝    ██║       
+███████║██║    ██║██╔████╔██║      ███╔╝ █████╗  ██╔██╗ ██║█████╔╝ ███████╗    ██║       
+██╔══██║██║    ██║██║╚██╔╝██║     ███╔╝  ██╔══╝  ██║╚██╗██║██╔═██╗ ╚════██║    ╚═╝       
+██║  ██║██║    ██║██║ ╚═╝ ██║    ███████╗███████╗██║ ╚████║██║  ██╗███████║    ██╗       
+╚═╝  ╚═╝╚═╝    ╚═╝╚═╝     ╚═╝    ╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚═╝   ''')
         if header not in response.headers:
             missing_headers.append(header)
 
             if len(missing_headers) == 0:
                 print(f'[+] {url} : all headers OK')
+                #Headers OK!
             else:
-                print(f'[-] {url} is missing headers: ')
+                print(f'[-] {url} is missing or they may have a bad config: ')
+                #Mostra a lista de headers faltando, quando houverem
                 for header in missing_headers:
                     print(header)
 
-
-
 check_security_headers(url)
+
+print('#########################################################################################################################')
+
+print('Please open a request on 4intelligence JIRA or e-mail r.paiva@4intelligence.ai to validate the headers config parameters')
